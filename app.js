@@ -13,6 +13,7 @@ function resetBoard() {
             element.innerHTML = "";
             element.classList.remove('disabled');
             document.getElementsByClassName("message")[0].innerHTML = "";
+            matrix[i][j] = false
         }
     }
 }
@@ -39,7 +40,6 @@ function mark(row, col) {
 }
 
 function isEnd() {
-    
     for (let i = 0; i < 3; i++) {
         let curr = matrix[i][0]
         let j = 1
@@ -84,3 +84,12 @@ function isEnd() {
     if (counter == 9) return 'Game Draws'
 
 }
+
+for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+        let element = document.querySelector(`[row="${i}"] [col="${j}"]`);
+        element.addEventListener('click', () => mark(i, j));
+    }
+}
+
+document.querySelector('#reset-button').addEventListener('click', resetBoard);
